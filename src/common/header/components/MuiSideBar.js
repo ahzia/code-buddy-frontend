@@ -15,8 +15,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 const drawerWidth = 240;
 
@@ -120,14 +121,24 @@ export default function PersistentDrawerLeft() {
         </List>
         <Divider />
         <List>
-          {['Home', 'Reservation', 'Create Meeting'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button>
+            <ListItemIcon>
+              <HomeOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <FormatListBulletedOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Reservation" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <AddBoxOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create Metting" />
+          </ListItem>
         </List>
       </Drawer>
       <Main open={open}>
