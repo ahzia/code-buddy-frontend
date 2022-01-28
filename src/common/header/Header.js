@@ -1,4 +1,4 @@
-import PersistentDrawerLeft from './components/MuiSideBar';
+import PersistentDrawerLeft from './components/SideBar';
 
 export default function Header() {
   return (
