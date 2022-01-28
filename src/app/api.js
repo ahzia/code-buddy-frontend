@@ -1,1 +1,2 @@
-export const endpoint = '';
+const endpoint = '';
+export default endpoint;
