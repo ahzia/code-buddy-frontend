@@ -82,7 +82,7 @@ export default function PersistentDrawerLeft() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar sx={{ bgcolor: 'teal' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -123,19 +123,19 @@ export default function PersistentDrawerLeft() {
         <List>
           <ListItem button>
             <ListItemIcon>
-              <HomeOutlinedIcon />
+              <HomeOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <FormatListBulletedOutlinedIcon />
+              <FormatListBulletedOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
             <ListItemText primary="Reservation" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <AddBoxOutlinedIcon />
+              <AddBoxOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
             <ListItemText primary="Create Metting" />
           </ListItem>
