@@ -21,6 +21,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import MeetingCard from '../../meetingCard/MeetingCard';
 
 const drawerWidth = 240;
 
@@ -188,7 +189,7 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       <Main open={open}>
-        <DrawerHeader />
+        <MeetingCard />
       </Main>
     </Box>
   );
