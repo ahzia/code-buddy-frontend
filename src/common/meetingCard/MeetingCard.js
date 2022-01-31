@@ -9,13 +9,14 @@ import Box from '@mui/material/Box';
 
 export default function MeetingCard() {
   return (
-    <Card sx={{
-      maxWidth: 345,
-      height: 500,
-      backgroundImage: `url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCnrAvtDMYbdQ2iYqIVOUzQ-y59fPSrMtdQ&usqp=CAU'})`,
-      borderRadius: 7,
-      boxShadow: 'rgba(0, 0, 0, 0.2) 0px 60px 40px -7px',
-    }}
+    <Card
+      sx={{
+        maxWidth: 345,
+        height: 500,
+        backgroundImage: `url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCnrAvtDMYbdQ2iYqIVOUzQ-y59fPSrMtdQ&usqp=CAU'})`,
+        borderRadius: 7,
+        boxShadow: 'rgba(0, 0, 0, 0.2) 0px 60px 40px -7px',
+      }}
     >
       <Box sx={{
         color: 'white',
@@ -58,7 +59,7 @@ export default function MeetingCard() {
         >
           Title:
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" sx={{ margin: '0 15px', textAlign: 'left' }}>
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
           doloremque laudantium.
         </Typography>
@@ -77,10 +78,6 @@ export default function MeetingCard() {
           Link to the meeting:
         </Typography>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
     </Card>
   );
 }
