@@ -14,6 +14,7 @@ export default function MeetingCard() {
       height: 500,
       backgroundImage: `url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCnrAvtDMYbdQ2iYqIVOUzQ-y59fPSrMtdQ&usqp=CAU'})`,
       borderRadius: 7,
+      boxShadow: 'rgba(0, 0, 0, 0.2) 0px 60px 40px -7px',
     }}
     >
       <Box sx={{
@@ -24,10 +25,10 @@ export default function MeetingCard() {
         alignItems: 'baseline',
       }}
       >
-        <Typography sx={{ padding: 1 }}>
+        <Typography sx={{ padding: 1, fontSize: 25 }}>
           Meeting type:
         </Typography>
-        <Typography sx={{ padding: 1 }}>
+        <Typography sx={{ padding: 1, fontSize: 24 }}>
           Atendee limit:
         </Typography>
       </Box>
@@ -37,9 +38,24 @@ export default function MeetingCard() {
         margin: 2,
         height: 200,
         position: 'relative',
+        marginTop: 20,
       }}
       >
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          sx={{
+            textAlign: 'left',
+            bgcolor: 'lightblue',
+            marginRight: 25,
+            paddingLeft: 2,
+            color: 'white',
+            letterSpacing: 1,
+            borderRadius: 5,
+            fontWeight: 600,
+          }}
+        >
           Title:
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -47,7 +63,15 @@ export default function MeetingCard() {
           doloremque laudantium.
         </Typography>
         <Typography sx={{
-          margin: 2,
+          marginTop: 2,
+          textAlign: 'left',
+          bgcolor: 'lightblue',
+          marginRight: 12,
+          padding: 1,
+          color: 'white',
+          letterSpacing: 1,
+          borderRadius: 5,
+          fontWeight: 600,
         }}
         >
           Link to the meeting:
