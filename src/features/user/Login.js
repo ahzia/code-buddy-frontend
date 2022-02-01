@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
@@ -11,19 +11,24 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import { loginOrRegisterAsync, selectUserName } from './userSlice';
+import { loginOrRegisterAsync, selectUserState } from './userSlice';
+import { openSuccessSnackbar, openErrorSnackbar } from '../../common/snackbar/snackbarSlice';
 
 export default function SignIn() {
   const theme = createTheme();
-  const [error, setError] = useState('');
-  const user = useSelector(selectUserName);
+  const user = useSelector(selectUserState);
   const [userName, setUserName] = useState('');
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (user.status === 'error') {
+      dispatch(openErrorSnackbar(user.error));
+    } else if (user.status === 'login') {
+      dispatch(openSuccessSnackbar('Welcome Back'));
+    }
+  }, [user]);
+
   const resetForm = () => {
-    setError('');
     setUserName('');
   };
 
@@ -35,7 +40,7 @@ export default function SignIn() {
   const submitUserToStore = (e) => {
     e.preventDefault();
     if (userName === '') {
-      setError('User Name is Required');
+      dispatch(openErrorSnackbar('User Name is Required'));
     } else {
       dispatch(loginOrRegisterAsync(userName));
       resetForm();
@@ -44,13 +49,6 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Alert severity="info">
-        <AlertTitle>Invalid Data</AlertTitle>
-        {error}
-        {' '}
-        —
-        <strong>check it out!</strong>
-      </Alert>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -88,7 +86,6 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <p>{user}</p>
           </Box>
         </Box>
       </Container>
