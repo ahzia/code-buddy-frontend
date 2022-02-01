@@ -21,6 +21,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import Grid from '@mui/material/Grid';
 import MeetingCard from '../../meetingCard/MeetingCard';
 
 const drawerWidth = 240;
@@ -184,12 +185,37 @@ export default function PersistentDrawerLeft() {
             <ListItemIcon>
               <AddBoxOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
-            <ListItemText primary="Create Metting" />
+            <ListItemText primary="Mettings" />
           </ListItem>
         </List>
       </Drawer>
       <Main open={open}>
-        <MeetingCard />
+        <Box>
+          <Grid
+            container
+            spacing={0.5}
+            sx={{ gap: '20px' }}
+          >
+            <Grid>
+              <MeetingCard xs={12} md={4} lg={3} />
+            </Grid>
+            <Grid>
+              <MeetingCard s={12} md={4} lg={3} />
+            </Grid>
+            <Grid>
+              <MeetingCard s={12} md={4} lg={3} />
+            </Grid>
+            <Grid>
+              <MeetingCard s={12} md={4} lg={3} />
+            </Grid>
+            <Grid>
+              <MeetingCard s={12} md={4} lg={3} />
+            </Grid>
+            <Grid>
+              <MeetingCard s={12} md={4} lg={3} />
+            </Grid>
+          </Grid>
+        </Box>
       </Main>
     </Box>
   );
