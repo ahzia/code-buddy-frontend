@@ -31,16 +31,15 @@ export const userSlice = createSlice({
         state.status = 'login';
         state.userName = action.payload.user_name;
         state.id = action.payload.id;
+        state.error = null;
       })
       .addCase(loginOrRegisterAsync.rejected, (state, action) => {
-        state.error = {
-          title: 'Server Error',
-          message: action.error.message,
-        };
+        state.status = 'error';
+        state.error = action.error.message;
       });
   },
 });
 
-export const selectUserName = (state) => state.user.userName;
+export const selectUserState = (state) => state.user;
 
 export default userSlice.reducer;
