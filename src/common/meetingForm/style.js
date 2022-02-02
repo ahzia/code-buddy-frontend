@@ -14,7 +14,7 @@ const style = {
     margin: 'auto',
     '@media (max-width:780px)': {
       width: '70%',
-      height: '70%',
+      height: '65%',
     },
   },
 
@@ -28,6 +28,9 @@ const style = {
       padding: 0,
       fontSize: '1.2rem',
     },
+    '@media (max-width:440px)': {
+      fontSize: '1rem',
+    },
   },
 
   btn: {
@@ -36,6 +39,9 @@ const style = {
     bgcolor: 'teal',
     width: '100%',
     padding: '10px 0',
+    '@media (max-width:440px)': {
+      fontSize: '0.8rem',
+    },
   },
 
 };
