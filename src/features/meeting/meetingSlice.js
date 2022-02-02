@@ -2,6 +2,7 @@
 //All Meetings
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {userMeetings} from '../../api/user';
+import {userReservedMeetings} from './../api/reservations'
 
 const initialState = {
   userMeetings: [],
@@ -15,6 +16,14 @@ export const userMeetingsAsync = createAsyncThunk(
   'meetings/user-meetings',
   async (userId) => {
     const response = await userMeetings(userId);
+    return response;
+  },
+);
+
+export const userReservedMeetingsAsync = createAsyncThunk(
+  'meetings/reserved-meetings',
+  async (userId) => {
+    const response = await userReservedMeetings(userId);
     return response;
   },
 );
@@ -37,7 +46,20 @@ export const meetingSlice = createSlice({
       .addCase(userMeetingsAsync.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
-      });
+      })
+      .addCase(userReservedMeetingsAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(userReservedMeetingsAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.reservedMeetings = action.payload;
+        state.error = null;
+      })
+      .addCase(userReservedMeetingsAsync.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.error.message;
+      })
+
   },
 });
 
