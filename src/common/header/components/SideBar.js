@@ -24,6 +24,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import MeetingCard from '../../meetingCard/MeetingCard';
+import MeetingForm from '../../meetingForm/MeetingForm';
 
 const drawerWidth = 240;
 
@@ -191,10 +192,17 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       <Main open={open}>
+        <Box sx={{ paddingTop: '4rem' }}>
+          <MeetingForm />
+        </Box>
         <Container>
           <Grid
             container
-            sx={{ gap: '20px', margin: '4rem 0' }}
+            sx={{
+              gap: '3rem',
+              margin: '4rem 0',
+              justifyContent: 'center',
+            }}
           >
             <Grid>
               <MeetingCard />

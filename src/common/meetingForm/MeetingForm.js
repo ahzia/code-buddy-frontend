@@ -15,7 +15,7 @@ export default function MeetingForm() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open</Button>
+      <Button variant="contained" onClick={handleOpen}>Create a meeting</Button>
       <Modal
         open={open}
         onClose={handleClose}

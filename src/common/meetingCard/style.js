@@ -2,6 +2,7 @@ const style = {
 
   card: {
     maxWidth: 345,
+    height: 400,
     backgroundImage: `url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCnrAvtDMYbdQ2iYqIVOUzQ-y59fPSrMtdQ&usqp=CAU'})`,
     backgroundSize: 'cover',
     borderRadius: 7,
@@ -32,6 +33,7 @@ const style = {
     bgcolor: 'whitesmoke',
     borderRadius: 7,
     margin: 2,
+    padding: 2,
   },
 };
 
