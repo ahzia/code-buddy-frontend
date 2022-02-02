@@ -2,7 +2,6 @@ const style = {
 
   card: {
     maxWidth: 345,
-    height: 500,
     backgroundImage: `url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCnrAvtDMYbdQ2iYqIVOUzQ-y59fPSrMtdQ&usqp=CAU'})`,
     backgroundSize: 'cover',
     borderRadius: 7,
