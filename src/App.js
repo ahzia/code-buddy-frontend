@@ -5,11 +5,15 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import './App.css';
+import { useSelector } from 'react-redux';
 import Login from './features/user/Login';
 import Snackbar from './common/snackbar/Snackbar';
 import Header from './common/header/Header';
+import { selectSlideBarState } from './common/header/components/sideBarSlice';
+import MainContainer from './common/Main';
 
 function App() {
+  const open = useSelector(selectSlideBarState);
   return (
     <div className="App">
       <Snackbar />
@@ -17,10 +21,12 @@ function App() {
         <header className="App-header">
           <Header />
         </header>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" />
-        </Routes>
+        <MainContainer open={open} className="main">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" />
+          </Routes>
+        </MainContainer>
       </Router>
     </div>
   );
