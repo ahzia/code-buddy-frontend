@@ -2,7 +2,7 @@ import baseURL from '../app/api';
 
 const endPointUser = `${baseURL}/users`;
 
-const userReservedMeetings = async (userId) => new Promise((resolve, reject) => {
+const getUserReservedMeetings = async (userId) => new Promise((resolve, reject) => {
   fetch(`${endPointUser}/${userId}/reservations`)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
@@ -20,5 +20,4 @@ const userReservedMeetings = async (userId) => new Promise((resolve, reject) => 
     });
 });
 
-
-export {userReservedMeetings};
+export default { getUserReservedMeetings };
