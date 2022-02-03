@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -8,10 +8,30 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import style from './style';
 
-export default function MeetingForm() {
+const MeetingForm = ({ meeting }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [title, setTitle] = useState('');
+  const [meeting_type, setMeeting_type] = useState('');
+  const [description, setDescription] = useState('');
+
+
+
+  const submitMeeting = (e) => {
+    e.preventDefault();
+    const newMeeting = {
+      title,
+      meeting_type,
+      description,
+    };
+
+    setTitle('');
+    setMeeting_type('')
+    setDescription('');
+  }
+
 
   return (
     <div>
@@ -22,22 +42,23 @@ export default function MeetingForm() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style.form}>
+        <Box sx={style.form} >
           <Typography sx={style.header}>
             Create your meeting buddy!
           </Typography>
-          <TextField fullWidth label="Title" id="fullWidth" sx={{ margin: '1rem 0' }} />
+          <TextField fullWidth label="Title" id="fullWidth" sx={{ margin: '1rem 0' }} onChange={(e) => setTitle(e.target.value)}/>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="MeetingType"
             sx={{ width: '100%', margin: '1rem 0' }}
+            onChange={(e) => setMeeting_type(e.target.value)}
           >
-            <MenuItem value={10}>Problem Solving</MenuItem>
-            <MenuItem value={20}>Coding</MenuItem>
-            <MenuItem value={30}>Learning</MenuItem>
+            <MenuItem value={10}>{meeting.meeting_type}</MenuItem>
+            <MenuItem value={20}>{meeting.meeting_type}</MenuItem>
+            <MenuItem value={30}>{meeting.meeting_type}</MenuItem>
           </Select>
-          <TextField fullWidth label="Description" id="fullWidth" sx={{ margin: '1rem 0' }} />
+          <TextField fullWidth label="Description" id="fullWidth" sx={{ margin: '1rem 0' }} onChange={(e) => setDescription(e.target.value)} />
           <Button
             variant="contained"
             sx={style.btn}
@@ -49,3 +70,5 @@ export default function MeetingForm() {
     </div>
   );
 }
+
+export default MeetingForm;
