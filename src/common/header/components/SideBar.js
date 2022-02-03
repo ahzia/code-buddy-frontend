@@ -21,6 +21,8 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useSelector, useDispatch } from 'react-redux';
+import { openSlidebar, closeSlidebar, selectSlidebarState } from './sideBarSlice';
 
 const drawerWidth = 240;
 
@@ -71,7 +73,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const open = useSelector(selectSlidebarState);
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -84,11 +87,11 @@ export default function PersistentDrawerLeft() {
   };
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    dispatch(openSlidebar);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    dispatch(closeSlidebar);
   };
 
   return (
