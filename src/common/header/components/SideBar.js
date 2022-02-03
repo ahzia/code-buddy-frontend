@@ -22,33 +22,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useSelector, useDispatch } from 'react-redux';
-import { openSlidebar, closeSlidebar, selectSlidebarState } from './sideBarSlice';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import MeetingCard from '../../meetingCard/MeetingCard';
-import MeetingForm from '../../meetingForm/MeetingForm';
-
+import { openSlideBar, closeSlideBar, selectSlideBarState } from './sideBarSlice';
 
 const drawerWidth = 240;
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  }),
-);
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -78,7 +54,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
-  const open = useSelector(selectSlidebarState);
+  const open = useSelector(selectSlideBarState);
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -92,11 +68,11 @@ export default function PersistentDrawerLeft() {
   };
 
   const handleDrawerOpen = () => {
-    dispatch(openSlidebar);
+    dispatch(openSlideBar());
   };
 
   const handleDrawerClose = () => {
-    dispatch(closeSlidebar);
+    dispatch(closeSlideBar());
   };
 
   return (
@@ -195,40 +171,8 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open}>
-        <Box sx={{ paddingTop: '4rem' }}>
-          <MeetingForm />
-        </Box>
-        <Container>
-          <Grid
-            container
-            sx={{
-              gap: '3rem',
-              margin: '4rem 0',
-              justifyContent: 'center',
-            }}
-          >
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-          </Grid>
-        </Container>
-      </Main>
     </Box>
   );
 }
+
+export { drawerWidth };
