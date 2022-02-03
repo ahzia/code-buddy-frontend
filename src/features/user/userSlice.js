@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import loginOrRegister from '../../api/user';
+import { loginOrRegister } from '../../api/user';
 
 const initialState = {
   userName: null,
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const loginOrRegisterAsync = createAsyncThunk(
-  'users/login-register',
+  'user/login-register',
   async (userName) => {
     const response = await loginOrRegister(userName);
     return response;
@@ -18,7 +18,7 @@ export const loginOrRegisterAsync = createAsyncThunk(
 );
 
 export const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {
   },

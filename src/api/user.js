@@ -2,8 +2,6 @@ import baseURL from '../app/api';
 
 const endPointUser = `${baseURL}/users`;
 // const endPointUserDetails = `${endPointUser}/user_details`;
-
-
 const loginOrRegister = async (userName) => new Promise((resolve, reject) => {
   fetch(`${endPointUser}/login-register?user_name=${userName}`)
     .then((response) => {
@@ -22,7 +20,7 @@ const loginOrRegister = async (userName) => new Promise((resolve, reject) => {
     });
 });
 
-const userMeetings = async (userId) => new Promise((resolve, reject) => {
+const getUserMeetings = async (userId) => new Promise((resolve, reject) => {
   fetch(`${endPointUser}/${userId}/meetings`)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
@@ -40,5 +38,4 @@ const userMeetings = async (userId) => new Promise((resolve, reject) => {
     });
 });
 
-
-export {loginOrRegister, userMeetings};
+export { loginOrRegister, getUserMeetings };
