@@ -10,7 +10,7 @@ function App() {
       <Snackbar />
       <header className="App-header">
         <Header />
-          <Login />
+        <Login />
       </header>
     </div>
   );
