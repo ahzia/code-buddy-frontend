@@ -1,4 +1,6 @@
+/* eslint-disable */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -14,10 +16,8 @@ const MeetingForm = ({ meeting }) => {
   const handleClose = () => setOpen(false);
 
   const [title, setTitle] = useState('');
-  const [meeting_type, setMeeting_type] = useState('');
+  const [meeting_type, setmeetingType] = useState('');
   const [description, setDescription] = useState('');
-
-
 
   const submitMeeting = (e) => {
     e.preventDefault();
@@ -28,10 +28,9 @@ const MeetingForm = ({ meeting }) => {
     };
 
     setTitle('');
-    setMeeting_type('')
+    setmeetingType('');
     setDescription('');
-  }
-
+  };
 
   return (
     <div>
@@ -42,19 +41,19 @@ const MeetingForm = ({ meeting }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style.form} >
+        <Box sx={style.form} onSubmit={submitMeeting}>
           <Typography sx={style.header}>
             Create your meeting buddy!
           </Typography>
-          <TextField fullWidth label="Title" id="fullWidth" sx={{ margin: '1rem 0' }} onChange={(e) => setTitle(e.target.value)}/>
+          <TextField fullWidth label="Title" id="fullWidth" sx={{ margin: '1rem 0' }} onChange={(e) => setTitle(e.target.value)} />
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="MeetingType"
             sx={{ width: '100%', margin: '1rem 0' }}
-            onChange={(e) => setMeeting_type(e.target.value)}
+            onChange={(e) => setmeetingType(e.target.value)}
           >
-            <MenuItem value={10}>{meeting.meeting_type}</MenuItem>
+            <MenuItem value={10}>{thismeeting.meeting_type}</MenuItem>
             <MenuItem value={20}>{meeting.meeting_type}</MenuItem>
             <MenuItem value={30}>{meeting.meeting_type}</MenuItem>
           </Select>
@@ -69,6 +68,14 @@ const MeetingForm = ({ meeting }) => {
       </Modal>
     </div>
   );
-}
+};
+
+MeetingForm.PropTypes = {
+  meeting: PropTypes.shape({
+    meeting_title: PropTypes.string.isRequired,
+    meeting_type: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default MeetingForm;
