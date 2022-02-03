@@ -23,6 +23,11 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useSelector, useDispatch } from 'react-redux';
 import { openSlidebar, closeSlidebar, selectSlidebarState } from './sideBarSlice';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import MeetingCard from '../../meetingCard/MeetingCard';
+import MeetingForm from '../../meetingForm/MeetingForm';
+
 
 const drawerWidth = 240;
 
@@ -186,12 +191,43 @@ export default function PersistentDrawerLeft() {
             <ListItemIcon>
               <AddBoxOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
-            <ListItemText primary="Create Metting" />
+            <ListItemText primary="Mettings" />
           </ListItem>
         </List>
       </Drawer>
       <Main open={open}>
-        <DrawerHeader />
+        <Box sx={{ paddingTop: '4rem' }}>
+          <MeetingForm />
+        </Box>
+        <Container>
+          <Grid
+            container
+            sx={{
+              gap: '3rem',
+              margin: '4rem 0',
+              justifyContent: 'center',
+            }}
+          >
+            <Grid>
+              <MeetingCard />
+            </Grid>
+            <Grid>
+              <MeetingCard />
+            </Grid>
+            <Grid>
+              <MeetingCard />
+            </Grid>
+            <Grid>
+              <MeetingCard />
+            </Grid>
+            <Grid>
+              <MeetingCard />
+            </Grid>
+            <Grid>
+              <MeetingCard />
+            </Grid>
+          </Grid>
+        </Container>
       </Main>
     </Box>
   );
