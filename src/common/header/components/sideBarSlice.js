@@ -8,17 +8,17 @@ export const slideBarSlice = createSlice({
   name: 'slideBar',
   initialState,
   reducers: {
-    openSlidebar: (state) => {
+    openSlideBar: (state) => {
       state.open = true;
     },
-    closeSlidebar: (state) => {
+    closeSlideBar: (state) => {
       state.open = false;
     },
   },
 });
 
-export const { openSlidebar, closeSlidebar } = slideBarSlice.actions;
+export const { openSlideBar, closeSlideBar } = slideBarSlice.actions;
 
-export const selectSlidebarState = (state) => state.slideBar.open;
+export const selectSlideBarState = (state) => state.slideBar.open;
 
 export default slideBarSlice.reducer;
