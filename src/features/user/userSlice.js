@@ -41,5 +41,6 @@ export const userSlice = createSlice({
 });
 
 export const selectUserState = (state) => state.user;
+export const selectSignedInUserName = (state) => state.user.userName;
 
 export default userSlice.reducer;
