@@ -1,3 +1,8 @@
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import Login from './features/user/Login';
@@ -8,10 +13,15 @@ function App() {
   return (
     <div className="App">
       <Snackbar />
-      <header className="App-header">
-        <Header />
-        <Login />
-      </header>
+      <Router>
+        <header className="App-header">
+          <Header />
+        </header>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" />
+        </Routes>
+      </Router>
     </div>
   );
 }
