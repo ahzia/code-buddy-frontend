@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -23,7 +24,7 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useSelector, useDispatch } from 'react-redux';
 import { openSlideBar, closeSlideBar, selectSlideBarState } from './sideBarSlice';
-
+import { selectUserState } from '../../../features/user/userSlice'
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -55,6 +56,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const open = useSelector(selectSlideBarState);
+  const userState = useSelector(selectUserState);
+
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -74,6 +77,14 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     dispatch(closeSlideBar());
   };
+
+  // useEffect(() => {
+  //   if (user.status === 'error') {
+  //     dispatch(openErrorSnackbar(user.error));
+  //   } else if (user.status === 'login') {
+  //     dispatch(openSuccessSnackbar('Welcome Back'));
+  //   }
+  // }, [userState]);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -120,9 +131,14 @@ export default function PersistentDrawerLeft() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Sign in</MenuItem>
-              <MenuItem onClick={handleClose}>Sign out</MenuItem>
+              {userState.status !== 'login' ? (
+                <MenuItem onClick={handleClose}><Link to="login">Login</Link></MenuItem>
+              ) : (
+                <div>
+                  <MenuItem onClick={handleClose}>{userState.userName}</MenuItem>
+                  <MenuItem onClick={handleClose}>Sign out</MenuItem>
+                </div>
+              )}
             </Menu>
           </div>
         </Toolbar>
