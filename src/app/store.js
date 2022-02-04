@@ -12,7 +12,7 @@ const store = configureStore({
     user: userReducer,
     snackbar: snackbarReducer,
     slideBar: slideBarReducer,
-    meeting: meetingReducer,
+    meetings: meetingReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
