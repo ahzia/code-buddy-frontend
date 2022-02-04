@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import MeetingCard from '../../common/meetingCard/MeetingCard';
 import { selectAllMeetingsState, allMeetingsAsync } from '../meeting/meetingSlice';
-// import MeetingForm from '../../meetingForm/MeetingForm';
+import MeetingForm from '../meeting/meetingForm/MeetingForm';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <main>
       <Box sx={{ paddingTop: '4rem' }}>
-        {/* <MeetingForm /> */}
+        <MeetingForm />
       </Box>
       <Container>
         <Grid
