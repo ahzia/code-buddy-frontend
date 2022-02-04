@@ -36,7 +36,7 @@ const AllRoutes = () => {
         path="/login"
         element={loginOrHome(userState)}
       />
-      <Route path="/" />
+      <Route path="/" element={<Home />} />
       {/* <ProtectedRoute path='/welcome' component={Welcome} /> */}
     </Routes>
   );

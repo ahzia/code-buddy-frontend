@@ -40,22 +40,22 @@ const MeetingCard = ({ meeting }) => (
           <EventNoteOutlinedIcon sx={{ fontSize: '2.5rem' }} />
         </IconButton>
         <AvatarGroup total={10} sx={{ float: 'left' }}>
-          <Avatar>{meeting.user_id}</Avatar>
-          <Avatar>{meeting.user_id}</Avatar>
-          <Avatar>{meeting.user_id}</Avatar>
-          <Avatar>{meeting.user_id}</Avatar>
+          <Avatar></Avatar>
+          <Avatar></Avatar>
+          <Avatar></Avatar>
+          <Avatar></Avatar>
         </AvatarGroup>
       </Box>
     </CardContent>
   </Card>
 );
 
-MeetingCard.PropTypes = {
+MeetingCard.propTypes = {
   meeting: PropTypes.shape({
-    meeting_id: PropTypes.string.isRequired,
+    meeting_id: PropTypes.number.isRequired,
     meeting_title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    user_id: PropTypes.string.isRequired,
+    user_id: PropTypes.number.isRequired,
   }).isRequired,
 
 };

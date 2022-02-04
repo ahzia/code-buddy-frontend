@@ -1,8 +1,16 @@
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-// import MeetingCard from '../../meetingCard/MeetingCard';
+import MeetingCard from '../../common/meetingCard/MeetingCard';
 // import MeetingForm from '../../meetingForm/MeetingForm';
+
+const meeting = {
+  meeting_id: 1,
+  meeting_title: 'Introduction to CS',
+  description: 'This a demo meeting creatied ...',
+  user_id: 1,
+};
+
 const Home = () => (
   <main>
     <Box sx={{ paddingTop: '4rem' }}>
@@ -18,7 +26,7 @@ const Home = () => (
         }}
       >
         <Grid>
-          {/* <MeetingCard /> */}
+          <MeetingCard meeting={meeting} />
         </Grid>
         <Grid>
           {/* <MeetingCard /> */}
