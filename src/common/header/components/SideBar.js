@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -21,31 +22,11 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import MeetingCard from '../../meetingCard/MeetingCard';
-import MeetingForm from '../../meetingForm/MeetingForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { openSlideBar, closeSlideBar, selectSlideBarState } from './sideBarSlice';
+import { signOut, selectUserState } from '../../../features/user/userSlice';
 
 const drawerWidth = 240;
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  }),
-);
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -75,7 +56,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const open = useSelector(selectSlideBarState);
+  const userState = useSelector(selectUserState);
+
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -88,11 +72,16 @@ export default function PersistentDrawerLeft() {
   };
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    dispatch(openSlideBar());
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    dispatch(closeSlideBar());
+  };
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+    handleClose();
   };
 
   return (
@@ -140,9 +129,14 @@ export default function PersistentDrawerLeft() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Sign in</MenuItem>
-              <MenuItem onClick={handleClose}>Sign out</MenuItem>
+              {userState.status !== 'login' ? (
+                <MenuItem onClick={handleClose}><Link to="login">Login</Link></MenuItem>
+              ) : (
+                <div>
+                  <MenuItem onClick={handleClose}>{userState.userName}</MenuItem>
+                  <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+                </div>
+              )}
             </Menu>
           </div>
         </Toolbar>
@@ -191,40 +185,8 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open}>
-        <Box sx={{ paddingTop: '4rem' }}>
-          <MeetingForm />
-        </Box>
-        <Container>
-          <Grid
-            container
-            sx={{
-              gap: '3rem',
-              margin: '4rem 0',
-              justifyContent: 'center',
-            }}
-          >
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-            <Grid>
-              <MeetingCard />
-            </Grid>
-          </Grid>
-        </Container>
-      </Main>
     </Box>
   );
 }
+
+export { drawerWidth };
