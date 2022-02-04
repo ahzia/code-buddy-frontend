@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -24,7 +24,8 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useSelector, useDispatch } from 'react-redux';
 import { openSlideBar, closeSlideBar, selectSlideBarState } from './sideBarSlice';
-import { selectUserState } from '../../../features/user/userSlice'
+import { signOut, selectUserState } from '../../../features/user/userSlice';
+
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -78,13 +79,10 @@ export default function PersistentDrawerLeft() {
     dispatch(closeSlideBar());
   };
 
-  // useEffect(() => {
-  //   if (user.status === 'error') {
-  //     dispatch(openErrorSnackbar(user.error));
-  //   } else if (user.status === 'login') {
-  //     dispatch(openSuccessSnackbar('Welcome Back'));
-  //   }
-  // }, [userState]);
+  const handleSignOut = () => {
+    dispatch(signOut());
+    handleClose();
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -136,7 +134,7 @@ export default function PersistentDrawerLeft() {
               ) : (
                 <div>
                   <MenuItem onClick={handleClose}>{userState.userName}</MenuItem>
-                  <MenuItem onClick={handleClose}>Sign out</MenuItem>
+                  <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
                 </div>
               )}
             </Menu>
