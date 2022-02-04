@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getUserMeetings } from '../../api/user';
 import getUserReservedMeetings from '../../api/reservation';
-import { getMeetingTypesMeetings } from '../../api/meetingType';
-import getAllMeetings from '../../api/meeting';
+import { getMeetingTypesMeetings, getMeetingTypes } from '../../api/meetingType';
+import { getAllMeetings, createMeeting } from '../../api/meeting';
 
 const initialState = {
   userMeetings: [],
   allMeetings: [],
   catagoriesedMeetings: [],
   reservedMeetings: [],
+  meetingTypes: [],
   status: 'idle',
   error: null,
 };
@@ -41,6 +42,22 @@ export const allMeetingsAsync = createAsyncThunk(
   'meetings/all',
   async () => {
     const response = await getAllMeetings();
+    return response;
+  },
+);
+
+export const meetingTypesAsync = createAsyncThunk(
+  'meetings/types',
+  async () => {
+    const response = await getMeetingTypes();
+    return response;
+  },
+);
+
+export const createMeetingAsync = createAsyncThunk(
+  'meetings/create',
+  async (meeting) => {
+    const response = await createMeeting(meeting);
     return response;
   },
 );
@@ -99,6 +116,29 @@ export const meetingSlice = createSlice({
       .addCase(allMeetingsAsync.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
+      })
+      .addCase(meetingTypesAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(meetingTypesAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.meetingTypes = action.payload;
+        state.error = null;
+      })
+      .addCase(meetingTypesAsync.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.error.message;
+      })
+      .addCase(createMeetingAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createMeetingAsync.fulfilled, (state) => {
+        state.status = 'created';
+        state.error = null;
+      })
+      .addCase(createMeetingAsync.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.error.message;
       });
   },
 });
@@ -108,5 +148,6 @@ export const selectAllMeetingsState = (state) => state.meetings.allMeetings;
 export const selectReservedMeetingsState = (state) => state.meetings.reservedMeetings;
 export const selectMeetingsStatusState = (state) => state.meetings.status;
 export const selectMeetingsErrorState = (state) => state.meetings.error;
-
+export const selectMeetingTypesState = (state) => state.meetings.meetingTypes;
+export const selectMeetingsState = (state) => state.meetings;
 export default meetingSlice.reducer;
