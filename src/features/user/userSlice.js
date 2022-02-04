@@ -21,6 +21,13 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    signOut: (state) => {
+      state.userName = null;
+      state.id = null;
+      state.userDetails = null;
+      state.status = 'signout';
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,6 +47,7 @@ export const userSlice = createSlice({
   },
 });
 
+export const { signOut } = userSlice.actions;
 export const selectUserState = (state) => state.user;
 export const selectSignedInUserName = (state) => state.user.userName;
 
