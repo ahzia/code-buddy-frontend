@@ -14,7 +14,7 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import style from './style';
 
 const MeetingCard = ({ meeting }) => (
-  <Card sx={style.card} key={meeting.meeting_id}>
+  <Card sx={style.card}>
     <Box sx={style.box}>
       <IconButton>
         <GroupsOutlinedIcon sx={{ color: 'white', fontSize: '2rem' }} />
@@ -29,7 +29,7 @@ const MeetingCard = ({ meeting }) => (
       component="div"
       sx={style.title}
     >
-      {meeting.meeting_title}
+      {meeting.title}
     </Typography>
     <CardContent sx={style.cardcontent}>
       <Typography variant="body2" color="text.secondary" sx={{ margin: '0 15px', textAlign: 'left' }}>
@@ -52,9 +52,8 @@ const MeetingCard = ({ meeting }) => (
 
 MeetingCard.propTypes = {
   meeting: PropTypes.shape({
-    meeting_id: PropTypes.number.isRequired,
-    meeting_title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
     user_id: PropTypes.number.isRequired,
   }).isRequired,
 
