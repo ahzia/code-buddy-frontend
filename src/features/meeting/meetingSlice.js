@@ -1,13 +1,13 @@
-// User Meetings
-// All Meetings
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getUserMeetings } from '../../api/user';
 import getUserReservedMeetings from '../../api/reservation';
 import { getMeetingTypesMeetings } from '../../api/meetingType';
+import getAllMeetings from '../../api/meeting';
 
 const initialState = {
   userMeetings: [],
   allMeetings: [],
+  catagoriesedMeetings: [],
   reservedMeetings: [],
   status: 'idle',
   error: null,
@@ -34,6 +34,14 @@ export const meetingTypeMeetingsAsync = createAsyncThunk(
   async (meetingId) => {
     const response = await getMeetingTypesMeetings(meetingId);
     return { meetingId: response };
+  },
+);
+
+export const allMeetingsAsync = createAsyncThunk(
+  'meetings/all',
+  async () => {
+    const response = await getAllMeetings();
+    return response;
   },
 );
 
@@ -73,10 +81,22 @@ export const meetingSlice = createSlice({
       })
       .addCase(meetingTypeMeetingsAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.allMeetings = [...action.payload];
+        state.catagoriesedMeetings = [...action.payload];
         state.error = null;
       })
       .addCase(meetingTypeMeetingsAsync.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.error.message;
+      })
+      .addCase(allMeetingsAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(allMeetingsAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.allMeetings = action.payload;
+        state.error = null;
+      })
+      .addCase(allMeetingsAsync.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
       });
