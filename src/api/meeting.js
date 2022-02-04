@@ -1,10 +1,9 @@
 import baseURL from '../app/api';
 
-const endPointUser = `${baseURL}/meetings`;
-const endPoinLoginOrRegister = `${endPointUser}/login-register`;
+const endPointMeeting = `${baseURL}/meetings`;
 
-const loginOrRegister = async (userName) => new Promise((resolve, reject) => {
-  fetch(`${endPoinLoginOrRegister}?user_name=${userName}`)
+const getAllMeetings = async () => new Promise((resolve, reject) => {
+  fetch(endPointMeeting)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
         response.json().then((data) => {
@@ -22,4 +21,4 @@ const loginOrRegister = async (userName) => new Promise((resolve, reject) => {
     });
 });
 
-export default (loginOrRegister);
+export default getAllMeetings;
