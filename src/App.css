@@ -11,9 +11,7 @@
 }
 
 .main {
-  display: 'flex';
-  flex-direction: 'column';
-  align-Items: 'center';
+  display: flex;
+  flex-direction: column;
+  align-Items: center;
 }
-
-
