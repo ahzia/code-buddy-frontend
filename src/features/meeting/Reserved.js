@@ -3,14 +3,14 @@ import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import MeetingCard from '../../common/meetingCard/MeetingCard';
-import { selectAllMeetingsState, allMeetingsAsync } from './meetingSlice';
+import { selectReservedMeetingsState, userReservedMeetingsAsync } from './meetingSlice';
 
-const Home = () => {
+const Reservation = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(allMeetingsAsync());
+    dispatch(userReservedMeetingsAsync());
   }, []);
-  const meetings = useSelector(selectAllMeetingsState);
+  const meetings = useSelector(selectReservedMeetingsState);
   return (
     <main>
       <Container>
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Reservation;
