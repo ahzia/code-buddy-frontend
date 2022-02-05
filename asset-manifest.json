@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/code-buddy-frontend/static/css/main.beb0c597.css",
+    "main.js": "/code-buddy-frontend/static/js/main.652930cd.js",
+    "index.html": "/code-buddy-frontend/index.html",
+    "main.beb0c597.css.map": "/code-buddy-frontend/static/css/main.beb0c597.css.map",
+    "main.652930cd.js.map": "/code-buddy-frontend/static/js/main.652930cd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.beb0c597.css",
+    "static/js/main.652930cd.js"
+  ]
+}
