@@ -2,18 +2,26 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import Box from '@mui/material/Box';
 import MeetingCard from '../../common/meetingCard/MeetingCard';
-import { selectAllMeetingsState, allMeetingsAsync } from '../meeting/meetingSlice';
+import { userMeetingsAsync, selectUserMeetingsState } from './meetingSlice';
+import MeetingForm from './meetingForm/MeetingForm';
+import { selectUserState } from '../user/userSlice';
 
-const Home = () => {
+const Meeting = () => {
   const dispatch = useDispatch();
+  const meetings = useSelector(selectUserMeetingsState);
+  const userState = useSelector(selectUserState);
   useEffect(() => {
-    dispatch(allMeetingsAsync());
-  }, []);
-  const meetings = useSelector(selectAllMeetingsState);
+    dispatch(userMeetingsAsync(userState.id));
+  }, [userState]);
+
   return (
     <main>
       <Container>
+        <Box>
+          <MeetingForm />
+        </Box>
         <Grid
           container
           sx={{
@@ -33,4 +41,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Meeting;

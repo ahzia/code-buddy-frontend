@@ -6,21 +6,18 @@ import {
 import { useSelector } from 'react-redux';
 import Login from '../features/user/Login';
 import Home from '../features/home/Home';
+import Reservation from '../features/meeting/Reserved';
+import Meeting from '../features/meeting/Meeting';
 import { selectUserState } from '../features/user/userSlice';
 
-// const ProtectedRoute = (props) => {
-//   const { component: Component, ...props } = this.props;
-//   return (
-//     <Route
-//       {...props}
-//       element={props => (
-//         this.state.authenticated ?
-//           <Component {...props} /> :
-//           <Redirect to='/login' />
-//       )}
-//     />
-//   )
-// }
+const protectedComponent = (Component) => {
+  const userState = useSelector(selectUserState);
+  return (
+    userState.status === 'login'
+      ? <Component />
+      : <Login />
+  );
+};
 
 const loginOrHome = (userState) => (
   userState.status === 'login'
@@ -36,8 +33,9 @@ const AllRoutes = () => {
         path="/login"
         element={loginOrHome(userState)}
       />
-      <Route path="/" />
-      {/* <ProtectedRoute path='/welcome' component={Welcome} /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="/reservations" element={protectedComponent(Reservation)} />
+      <Route path="/meetings" element={protectedComponent(Meeting)} />
     </Routes>
   );
 };

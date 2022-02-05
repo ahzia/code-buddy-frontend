@@ -14,7 +14,7 @@ const style = {
     margin: 'auto',
     '@media (max-width:780px)': {
       width: '70%',
-      height: '65%',
+      height: '70%',
     },
   },
 
@@ -38,12 +38,18 @@ const style = {
     margin: 'auto',
     bgcolor: 'teal',
     width: '100%',
-    padding: '10px 0',
     '@media (max-width:440px)': {
       fontSize: '0.8rem',
     },
   },
 
+  meetingBtn: {
+    fontsize: '1rem',
+    padding: '0.5rem 6rem',
+    fontWeight: 600,
+    letterSpacing: '1px',
+    marginTop: '3rem',
+  },
 };
 
 export default style;

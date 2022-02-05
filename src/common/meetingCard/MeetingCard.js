@@ -9,12 +9,49 @@ import Box from '@mui/material/Box';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+// import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import EditIcon from '@mui/icons-material/Edit';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import style from './style';
+import {selectUserState} from '../../features/user/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {createReservationAsync} from '../../features/meeting/meetingSlice';
+import {openErrorSnackbar, openSuccessSnackbar} from '../snackbar/snackbarSlice';
+import {selectMeetingsErrorState, selectMeetingsStatusState } from '../../features/meeting/meetingSlice';
+import { useEffect } from 'react';
 
-const MeetingCard = ({ meeting }) => (
-  <Card sx={style.card} key={meeting.meeting_id}>
+
+const MeetingCard = ({ meeting }) => {
+  const userState = useSelector(selectUserState);
+  const dispatch = useDispatch();
+
+  const error = useSelector(selectMeetingsErrorState);
+  const status = useSelector(selectMeetingsStatusState);
+  
+  useEffect(() => {
+    if (status=== 'error') {
+      dispatch(openErrorSnackbar(error));
+    } else if (status === 'reserved') {
+      dispatch(openSuccessSnackbar('Meeting Reserved'));
+    }
+  }, [status]);
+
+  const handleOnClickReserve = () => {
+    console.log(meeting);
+  if(userState.status === 'login'){
+    const reservationObject = {
+      user_id: userState.id,
+      meeting_id: meeting.id,
+    };
+    dispatch(createReservationAsync(reservationObject));
+  }
+  else{
+    dispatch(openErrorSnackbar('You have to login'));
+  }
+  }
+  return(
+  <Card sx={style.card}>
     <Box sx={style.box}>
       <IconButton>
         <GroupsOutlinedIcon sx={{ color: 'white', fontSize: '2rem' }} />
@@ -29,33 +66,36 @@ const MeetingCard = ({ meeting }) => (
       component="div"
       sx={style.title}
     >
-      {meeting.meeting_title}
+      {meeting.title}
     </Typography>
     <CardContent sx={style.cardcontent}>
       <Typography variant="body2" color="text.secondary" sx={{ margin: '0 15px', textAlign: 'left' }}>
         {meeting.description}
       </Typography>
       <Box sx={{ padding: '2rem 0' }}>
-        <IconButton sx={{ float: 'right' }}>
-          <EventNoteOutlinedIcon sx={{ fontSize: '2.5rem' }} />
-        </IconButton>
+        
+          {(meeting.user_id != userState.id) ? 
+            <IconButton sx={{ float: 'right' }} onClick={handleOnClickReserve}><EventNoteOutlinedIcon sx={{ fontSize: '2.5rem' }} /></IconButton> :
+            <IconButton sx={{ float: 'right' }}><EditIcon sx={{ fontSize: '2.5rem' }} /></IconButton>
+          }
+        
         <AvatarGroup total={10} sx={{ float: 'left' }}>
-          <Avatar>{meeting.user_id}</Avatar>
-          <Avatar>{meeting.user_id}</Avatar>
-          <Avatar>{meeting.user_id}</Avatar>
-          <Avatar>{meeting.user_id}</Avatar>
+          <Avatar></Avatar>
+          <Avatar></Avatar>
+          <Avatar></Avatar>
+          <Avatar></Avatar>
         </AvatarGroup>
       </Box>
     </CardContent>
   </Card>
-);
+  );
+};
 
-MeetingCard.PropTypes = {
+MeetingCard.propTypes = {
   meeting: PropTypes.shape({
-    meeting_id: PropTypes.string.isRequired,
-    meeting_title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    user_id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    user_id: PropTypes.number.isRequired,
   }).isRequired,
 
 };

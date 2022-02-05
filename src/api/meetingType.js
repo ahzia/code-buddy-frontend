@@ -3,7 +3,7 @@ import baseURL from '../app/api';
 const endPointMeetingType = `${baseURL}/meeting_types`;
 
 const getMeetingTypes = async () => new Promise((resolve, reject) => {
-  fetch(`${endPointMeetingType}`)
+  fetch(endPointMeetingType)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
         response.json().then((data) => {
