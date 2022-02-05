@@ -34,8 +34,8 @@ const AllRoutes = () => {
         element={loginOrHome(userState)}
       />
       <Route path="/" element={<Home />} />
-      <Route path="/reservations" element={protectedComponent(<Reservation />)} />
-      <Route path="/meetings" element={protectedComponent(<Meeting />)} />
+      <Route path="/reservations" element={protectedComponent(Reservation)} />
+      <Route path="/meetings" element={protectedComponent(Meeting)} />
     </Routes>
   );
 };
