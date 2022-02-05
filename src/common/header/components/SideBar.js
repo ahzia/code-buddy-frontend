@@ -169,19 +169,19 @@ export default function PersistentDrawerLeft() {
             <ListItemIcon>
               <HomeOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
-            <ListItemText primary="Home" />
+            <ListItemText><Link to="/home">Home</Link></ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <FormatListBulletedOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
-            <ListItemText primary="Reservation" />
+            <ListItemText sx={{ textDecoration: 'none' }}><Link to="/reservations">Reservations</Link></ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <AddBoxOutlinedIcon sx={{ color: 'teal' }} />
             </ListItemIcon>
-            <ListItemText primary="Mettings" />
+            <ListItemText><Link to="/meetings">Meetings</Link></ListItemText>
           </ListItem>
         </List>
       </Drawer>
