@@ -1,44 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
-## Available Scripts
+# LUNAR HOTEL
 
-In the project directory, you can run:
+> This is a react app which will serve as the front end app for our Lunar hotel back end app.
 
-### `npm start`
+# Demo Link
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Click [here](https://ahzia.github.io/code-buddy-frontend/) to see live demo.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+## The learning objective of this project are
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Create react front end app
+- Connect react front end app to rails back end
+- Use API end point to get data
+- Fetch data from the API
 
-### `npm run build`
+## Built With
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- Redux
+- Materia UI
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get a local copy up and running follow these simple example steps.
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [React](https://reactjs.org/tutorial/tutorial.html#prerequisites)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- ```git clone git@github.com:medaminedev66/lunar-hotel-frontend.git```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- ```cd code-buddy-frontend```
 
-## Learn More
+### Running The App Locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Run `npm install`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Make sure to run our [Rails backend application](https://github.com/medaminedev66/lunar-hotel-backend) first before running the React app so that it takes up the `port 3000`. This is very important as our rails API end point must run on `port 3000` for the API to work.
+- Once the back end is runing on `port 3000` then start the react app and you will be prompted to run the server on another port like `port 3001`. You will receive a message in your terminal like this `Would you like to run the app on another port instead? » (Y/n)`. Please enter `y` so that the react app will start on `port 3001`.
+
+## Authors
+
+👤 Donard Golaj
+
+Github : [@Donard97](https://github.com/Donard97)<br>
+Twitter: [@donardgolaj](https://twitter.com/donardgolaj)<br>
+LinkdIn : [@donard-golaj](https://www.linkedin.com/in/donard-golaj/)<br>
+
+👤 Ahmad Zia Yousufi 
+
+Github : [@ahzia](https://github.com/ahzia) <br>
+Twitter: [@ZiaYousofi](https://twitter.com/ZiaYousofi)<br>
+LinkedIn : [@ah-ziayosfi](https://www.linkedin.com/in/ah-ziayosfi/)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/ahzia/code-buddy-frontend/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Hats off to [Murat Korkmaz](https://www.behance.net/muratk) for designing the awesome template that was used. ✨
+- Microverse for giving us this chance
+- The amazing code reviewers for making us improve every day 👍
