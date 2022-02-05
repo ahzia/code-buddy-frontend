@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getUserMeetings } from '../../api/user';
-import getUserReservedMeetings from '../../api/reservation';
+import { getUserReservedMeetings, createReservation } from '../../api/reservation';
 import { getMeetingTypesMeetings, getMeetingTypes } from '../../api/meetingType';
 import { getAllMeetings, createMeeting } from '../../api/meeting';
 
@@ -58,6 +58,14 @@ export const createMeetingAsync = createAsyncThunk(
   'meetings/create',
   async (meeting) => {
     const response = await createMeeting(meeting);
+    return response;
+  },
+);
+
+export const createReservationAsync = createAsyncThunk(
+  'meetings/reserved/create',
+  async (reservationObject) => {
+    const response = await createReservation(reservationObject);
     return response;
   },
 );
@@ -137,6 +145,17 @@ export const meetingSlice = createSlice({
         state.error = null;
       })
       .addCase(createMeetingAsync.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.error.message;
+      })
+      .addCase(createReservationAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createReservationAsync.fulfilled, (state) => {
+        state.status = 'reserved';
+        state.error = null;
+      })
+      .addCase(createReservationAsync.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
       });

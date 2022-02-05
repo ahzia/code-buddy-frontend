@@ -1,2 +1,2 @@
-const baseURL = 'https://codebuddy-me.herokuapp.com/';
+const baseURL = 'https://codebuddy-me.herokuapp.com';
 export default baseURL;

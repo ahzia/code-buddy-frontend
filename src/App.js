@@ -12,6 +12,7 @@ import AllRoutes from './app/Routes';
 
 function App() {
   const open = useSelector(selectSlideBarState);
+
   return (
     <div className="App">
       <Snackbar />

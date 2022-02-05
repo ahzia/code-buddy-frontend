@@ -3,7 +3,9 @@ import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import MeetingCard from '../../common/meetingCard/MeetingCard';
-import { selectReservedMeetingsState, userReservedMeetingsAsync } from './meetingSlice';
+import {
+  selectReservedMeetingsState, userReservedMeetingsAsync,
+} from './meetingSlice';
 import { selectUserState } from '../user/userSlice';
 
 const Reservation = () => {
