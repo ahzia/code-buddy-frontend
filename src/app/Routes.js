@@ -6,6 +6,8 @@ import {
 import { useSelector } from 'react-redux';
 import Login from '../features/user/Login';
 import Home from '../features/home/Home';
+import Reservation from '../features/meeting/Reserved';
+import Meeting from '../features/meeting/Meeting';
 import { selectUserState } from '../features/user/userSlice';
 
 // const ProtectedRoute = (props) => {
@@ -37,6 +39,8 @@ const AllRoutes = () => {
         element={loginOrHome(userState)}
       />
       <Route path="/" element={<Home />} />
+      <Route path="/reservations" element={<Reservation />} />
+      <Route path="/meetings" element={<Meeting />} />
       {/* <ProtectedRoute path='/welcome' component={Welcome} /> */}
     </Routes>
   );
