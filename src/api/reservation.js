@@ -20,4 +20,4 @@ const getUserReservedMeetings = async (userId) => new Promise((resolve, reject) 
     });
 });
 
-export default { getUserReservedMeetings };
+export default getUserReservedMeetings;

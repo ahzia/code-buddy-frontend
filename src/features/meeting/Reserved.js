@@ -4,13 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import MeetingCard from '../../common/meetingCard/MeetingCard';
 import { selectReservedMeetingsState, userReservedMeetingsAsync } from './meetingSlice';
+import { selectUserState } from '../user/userSlice';
 
 const Reservation = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userReservedMeetingsAsync());
-  }, []);
   const meetings = useSelector(selectReservedMeetingsState);
+  const userState = useSelector(selectUserState);
+
+  useEffect(() => {
+    dispatch(userReservedMeetingsAsync(userState.id));
+  }, [userState]);
+
   return (
     <main>
       <Container>

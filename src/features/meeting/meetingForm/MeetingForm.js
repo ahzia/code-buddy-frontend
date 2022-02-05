@@ -65,7 +65,6 @@ const MeetingForm = () => {
     } else if (meeting.description === '') {
       dispatch(openErrorSnackbar('Meeting Description is Required'));
     } else {
-      // dispatch(addBookToApi(newBook));
       dispatch(createMeetingAsync(meeting));
       resetForm();
     }

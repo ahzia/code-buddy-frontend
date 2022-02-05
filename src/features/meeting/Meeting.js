@@ -6,16 +6,22 @@ import Box from '@mui/material/Box';
 import MeetingCard from '../../common/meetingCard/MeetingCard';
 import { userMeetingsAsync, selectUserMeetingsState } from './meetingSlice';
 import MeetingForm from './meetingForm/MeetingForm';
+import { selectUserState } from '../user/userSlice';
 
 const Meeting = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userMeetingsAsync());
-  }, []);
   const meetings = useSelector(selectUserMeetingsState);
+  const userState = useSelector(selectUserState);
+  useEffect(() => {
+    dispatch(userMeetingsAsync(userState.id));
+  }, [userState]);
+
   return (
     <main>
       <Container>
+        <Box>
+          <MeetingForm />
+        </Box>
         <Grid
           container
           sx={{
@@ -24,9 +30,6 @@ const Meeting = () => {
             justifyContent: 'center',
           }}
         >
-          <Box>
-            <MeetingForm />
-          </Box>
           {meetings.map((meeting) => (
             <Grid key={meeting.id}>
               <MeetingCard meeting={meeting} />

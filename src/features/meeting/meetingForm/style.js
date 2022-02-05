@@ -48,7 +48,7 @@ const style = {
     padding: '0.5rem 6rem',
     fontWeight: 600,
     letterSpacing: '1px',
-    marginTop: '1rem',
+    marginTop: '3rem',
   },
 };
 
