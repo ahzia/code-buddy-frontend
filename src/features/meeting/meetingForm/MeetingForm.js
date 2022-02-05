@@ -73,7 +73,7 @@ const MeetingForm = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>Create a meeting</Button>
+      <Button variant="contained" onClick={handleOpen} className="meetingBtn" sx={style.meetingBtn}>Create a meeting</Button>
       <Modal
         open={open}
         onClose={handleClose}

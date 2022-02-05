@@ -24,7 +24,7 @@ const Meeting = () => {
             justifyContent: 'center',
           }}
         >
-          <Box sx={{ paddingTop: '4rem' }}>
+          <Box>
             <MeetingForm />
           </Box>
           {meetings.map((meeting) => (
