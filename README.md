@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# LUNAR HOTEL
+# CODE BUDDY FRONTEND
 
 > This is a react app which will serve as the front end app for our Lunar hotel back end app.
 
