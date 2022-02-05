@@ -33,7 +33,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-- ```git clone git@github.com:medaminedev66/lunar-hotel-frontend.git```
+- ```git clone git@github.com:ahzia/code-buddy-frontend.git```
 
 - ```cd code-buddy-frontend```
 
