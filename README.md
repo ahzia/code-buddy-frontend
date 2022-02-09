@@ -2,7 +2,7 @@
 
 # CODE BUDDY FRONTEND
 
-> This is a react app which will serve as the front end app for our Lunar hotel back end app.
+> This is a react app which will serve as the front end app for Code Buddy Platfrom, the project is still under development, but some of the functionalites are finalized in the backend & front end, Which you can check it out.
 
 # Demo Link
 
